@@ -28,8 +28,10 @@ public class Main {
                 System.out.println(rs.getString("destination"));
                 System.out.println("------------");
             }
+            ResultSetMetaData meta = rs.getMetaData();
 
-
+            System.out.println(meta.getColumnCount());
+            System.out.println(meta.getColumnTypeName(1));
 
             rs.close();
             ps.close();
