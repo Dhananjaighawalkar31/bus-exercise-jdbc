@@ -15,26 +15,33 @@ public class Main {
         }
         try {
             Connection connection = DriverManager.getConnection(url,username,password);
+            DatabaseMetaData meta = connection.getMetaData();
+            System.out.println(meta.getDatabaseProductName());
+            System.out.println(meta.getDriverName());
+            System.out.println(meta.getDriverVersion());
+            System.out.println(meta.getUserName());
+            System.out.println(meta.getURL());
 
-            String query = "select * from booking join bus on booking.bus_id = bus.bus_id;";
+//            String query = "select * from booking join bus on booking.bus_id = bus.bus_id;";
 
-            PreparedStatement ps = connection.prepareStatement(query);
 
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()){
-                System.out.println(rs.getString("passenger_name"));
-                System.out.println(rs.getInt("passenger_age"));
-                System.out.println(rs.getString("bus_number"));
-                System.out.println(rs.getString("destination"));
-                System.out.println("------------");
-            }
-            ResultSetMetaData meta = rs.getMetaData();
-
-            System.out.println(meta.getColumnCount());
-            System.out.println(meta.getColumnTypeName(1));
-
-            rs.close();
-            ps.close();
+//            PreparedStatement ps = connection.prepareStatement(query);
+//
+//            ResultSet rs = ps.executeQuery();
+//            while(rs.next()){
+//                System.out.println(rs.getString("passenger_name"));
+//                System.out.println(rs.getInt("passenger_age"));
+//                System.out.println(rs.getString("bus_number"));
+//                System.out.println(rs.getString("destination"));
+//                System.out.println("------------");
+//            }
+//            ResultSetMetaData meta = rs.getMetaData();
+//
+//            System.out.println(meta.getColumnCount());
+//            System.out.println(meta.getColumnTypeName(1));
+//
+//            rs.close();
+//            ps.close();
             connection.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
